@@ -7,9 +7,8 @@ export ZOOKEEPER_SERVERS=$1
 # the second argument provided is vat of this Zookeeper node:
 export ZOOKEEPER_ID=$2
 
-# create data and blog directories:
+# create data directory
 mkdir -p $dataDir
-mkdir -p $dataLogDir
 
 # create myID file:
 echo "$ZOOKEEPER_ID" | tee $dataDir/myid
