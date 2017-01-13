@@ -25,5 +25,4 @@ ENV syncLimit=5
 
 VOLUME ["/opt/zookeeper/conf", "/tmp/zookeeper"]
 
-ENTRYPOINT ["/opt/zookeeper/bin/zkServer.sh"]
-CMD ["start-foreground"]
+ENTRYPOINT ["/opt/zookeeper/entrypoint.sh"]
