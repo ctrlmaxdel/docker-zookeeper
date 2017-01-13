@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#script from https://github.com/gten/docker-zookeeper-cluster
+
 # the first argument provided is a comma-seperated list of all Zookeeper servers in the ensemble:
 export ZOOKEEPER_SERVERS=$1
 # the second argument provided is vat of this Zookeeper node:
