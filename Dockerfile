@@ -17,6 +17,12 @@ EXPOSE 2181 2888 3888
 
 WORKDIR /opt/zookeeper
 
+ENV tickTime=2000
+ENV dataDir=/tmp/zookeeper
+ENV clientPort=2181
+ENV initLimit=10
+ENV syncLimit=2
+
 VOLUME ["/opt/zookeeper/conf", "/tmp/zookeeper"]
 
 ENTRYPOINT ["/opt/zookeeper/bin/zkServer.sh"]
