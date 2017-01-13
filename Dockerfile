@@ -21,7 +21,7 @@ ENV tickTime=2000
 ENV dataDir=/tmp/zookeeper
 ENV clientPort=2181
 ENV initLimit=10
-ENV syncLimit=2
+ENV syncLimit=5
 
 VOLUME ["/opt/zookeeper/conf", "/tmp/zookeeper"]
 
