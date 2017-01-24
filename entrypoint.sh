@@ -38,5 +38,5 @@ done
 echo "$ZOOKEEPER_CONFIG" | tee conf/zoo.cfg
 
 # start teh server:
-/bin/bash bin/zkServer..sh start-foreground
+/bin/bash bin/zkServer.sh start-foreground
 
