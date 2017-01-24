@@ -20,19 +20,17 @@ ZOOKEEPER_CONFIG="$ZOOKEEPER_CONFIG"$'\n'"dataDir=$dataDir"
 ZOOKEEPER_CONFIG="$ZOOKEEPER_CONFIG"$'\n'"clientPort=$clientPort"
 ZOOKEEPER_CONFIG="$ZOOKEEPER_CONFIG"$'\n'"initLimit=$initLimit"
 ZOOKEEPER_CONFIG="$ZOOKEEPER_CONFIG"$'\n'"syncLimit=$syncLimit"
-# Put all Zookeeper server IPs into an array:
-IFS=', ' read -r -a ZOOKEEPER_SERVERS_ARRAY
-#now append information on every ZooKeeper node in theensemble to the ZooKeeper config:
+# Put all Zookeeper server hostnames into an array:
+IFS=',' read -r -a ZOOKEEPER_SERVERS_ARRAY <<<"$ZOOKEEPER_SERVERS"
+
 for index in "${!ZOOKEEPER_SERVERS_ARRAY[@]}"
 do
     ZKID=$(($index+1))
+    echo "ZKID is $ZKID"
+    echo "ZOOKEEPER_ID is $ZOOKEEPER_ID"
     ZKIP=${ZOOKEEPER_SERVERS_ARRAY[index]}
-    if [ $ZKID == $ZOOKEEPER_ID ]
-    then
-        # if IP's are used instead of hostnames, every Zookeeper host has to specify itself as follows
-        ZKIP=0.0.0.0
-    fi
-    ZOOKEEPER_CONFIG="$ZOOKEEPER_CONFIG"$'\\'"server.$ZKID=$ZKIP:2888:3888"
+    ZOOKEEPER_CONFIG="$ZOOKEEPER_CONFIG"$'\n'"server.$ZKID=$ZKIP:2888:3888"
+    echo "ZOOKEEPER_CONFIG is $ZOOKEEPER_CONFIG"
 done
 # Finally, write config file:
 echo "$ZOOKEEPER_CONFIG" | tee conf/zoo.cfg
