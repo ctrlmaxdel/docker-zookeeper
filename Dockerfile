@@ -25,4 +25,7 @@ ENV syncLimit=5
 
 VOLUME ["/opt/zookeeper/conf", "/tmp/zookeeper"]
 
+ADD entrypoint.sh entrypoint.sh
+RUN chmod +x entrypoint.sh
+
 ENTRYPOINT ["/opt/zookeeper/entrypoint.sh"]
