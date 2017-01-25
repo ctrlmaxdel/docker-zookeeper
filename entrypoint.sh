@@ -28,11 +28,8 @@ IFS=',' read -r -a ZOOKEEPER_SERVERS_ARRAY <<<"$ZOOKEEPER_SERVERS"
 for index in "${!ZOOKEEPER_SERVERS_ARRAY[@]}"
 do
     ZKID=$(($index+1))
-    echo "ZKID is $ZKID"
-    echo "ZOOKEEPER_ID is $ZOOKEEPER_ID"
     ZKIP=${ZOOKEEPER_SERVERS_ARRAY[index]}
     ZOOKEEPER_CONFIG="$ZOOKEEPER_CONFIG"$'\n'"server.$ZKID=$ZKIP:2888:3888"
-    echo "ZOOKEEPER_CONFIG is $ZOOKEEPER_CONFIG"
 done
 # Finally, write config file:
 echo "$ZOOKEEPER_CONFIG" | tee conf/zoo.cfg
