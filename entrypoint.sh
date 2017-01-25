@@ -3,12 +3,13 @@
 #script from https://github.com/gten/docker-zookeeper-cluster
 
 # the first argument provided is a comma-seperated list of all Zookeeper servers in the ensemble:
-export ZOOKEEPER_SERVERS=$1
+export ZOOKEEPER_SERVERS
 # the second argument provided is vat of this Zookeeper node:
-export ZOOKEEPER_ID=$2
+export ZOOKEEPER_ID
 
 # create data directory
 mkdir -p $dataDir
+mkdir -p $dataLogDir
 
 # create myID file:
 echo "$ZOOKEEPER_ID" | tee $dataDir/myid
@@ -17,6 +18,7 @@ echo "$ZOOKEEPER_ID" | tee $dataDir/myid
 ZOOKEEPER_CONFIG=
 ZOOKEEPER_CONFIG="$ZOOKEEPER_CONFIG"$'\n'"tickTime=$tickTime"
 ZOOKEEPER_CONFIG="$ZOOKEEPER_CONFIG"$'\n'"dataDir=$dataDir"
+ZOOKEEPER_CONFIG="$ZOOKEEPER_CONFIG"$'\n'"dataLogDir=$dataLogDir"
 ZOOKEEPER_CONFIG="$ZOOKEEPER_CONFIG"$'\n'"clientPort=$clientPort"
 ZOOKEEPER_CONFIG="$ZOOKEEPER_CONFIG"$'\n'"initLimit=$initLimit"
 ZOOKEEPER_CONFIG="$ZOOKEEPER_CONFIG"$'\n'"syncLimit=$syncLimit"
